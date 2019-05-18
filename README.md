@@ -4,5 +4,10 @@
 - ./configure --prefix=$PWD/build
 - make
 - make install
-
+# 编译THULAC
+- cd tools/THULAC
+- mkdir build
+- cd build
+- cmake ..
+- make
 
