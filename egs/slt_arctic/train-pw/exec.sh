@@ -1,7 +1,11 @@
 #!/bin/sh
-/home/work_nfs/wshge/workspace/CRF++-0.58/bins/crf_learn -c 0.5 -f 9.0 template train.data pw_model
-/home/work_nfs/wshge/workspace/CRF++-0.58/bins/crf_test  -m pw_model test.data > test.log
 
-#/home/disk1/liuyang/workspace/software/crf++/bin/crf_learn -a MIRA template train.data model >train2.log
-#/home/disk1/liuyang/workspace/software/crf++/bin/crf_test  -m model test.data > test2.log
-#rm -f model
+current_working_dir=$(pwd)
+cpsp_dir=$(dirname $(dirname $(dirname $current_working_dir)))
+crf_dir=$cpsp_dir/tools/CRF++-0.58/build/bin
+
+cp test.data test.gt
+awk '{print $1"\t"$2"\t"$3}' test.gt > test.input
+
+$crf_dir/crf_learn -c 0.5 -f 7.0 template train.data pw_model
+$crf_dir/crf_test  -m pw_model test.input > test.log
