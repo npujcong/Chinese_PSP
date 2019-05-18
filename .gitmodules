@@ -1,0 +1,3 @@
+[submodule "tools/THULAC"]
+	path = tools/THULAC
+	url = git@github.com:npujcong/THULAC.git
